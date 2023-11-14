@@ -2,7 +2,7 @@
 
 import classes from '@/components/CurrentConditions.module.css'
 import {useWeatherContext} from '@/components/WeatherProvider'
-import {formatTemperature} from '@/lib/helpers'
+import {formatTemperature, formatUnixTimestamp} from '@/lib/helpers'
 import {Stack, Text} from '@mantine/core'
 
 /**
@@ -14,7 +14,8 @@ export default function CurrentConditions() {
       current: {
         weather: [{description}],
         temp,
-        feels_like
+        feels_like,
+        dt
       }
     },
     tempUnit,
@@ -27,7 +28,9 @@ export default function CurrentConditions() {
         component="p"
         gradient={{from: 'purple', to: 'violet', deg: 45}}
         variant="gradient"
+        size="lg"
       >
+        <Text size="sm">{formatUnixTimestamp(dt)}</Text>
         {location}
       </Text>
       <Text

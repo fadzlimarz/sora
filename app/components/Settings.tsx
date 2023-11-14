@@ -51,7 +51,7 @@ export default function Settings() {
         <Stack justify="space-between">
           <Switch
             aria-label="Toggle between light and theme."
-            label="Toggle Dark Theme (⌘+J)"
+            label="Dark Theme (⌘+J)"
             checked={colorScheme === 'dark'}
             offLabel="OFF"
             onChange={() => toggleColorScheme()}
@@ -60,7 +60,7 @@ export default function Settings() {
           />
           <Switch
             aria-label="Toggle between Fahrenheit and Celsius"
-            label="Toggle Fahrenheit (⌘+U)"
+            label="Fahrenheit (⌘+U)"
             checked={checked}
             offLabel="OFF"
             onChange={() => toggleTempUnit()}

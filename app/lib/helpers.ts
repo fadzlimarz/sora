@@ -57,3 +57,19 @@ export function formatTime(time: number): string {
     hour: 'numeric'
   }).format(time * 1000)
 }
+
+/**
+ * Format a UNIX timestamp to a human-readable date.
+ *
+ * @param {number} unixTimestamp - The UNIX timestamp from the API.
+ * @return {string} - The formatted date string.
+ */
+export function formatUnixTimestamp(unixTimestamp: number): string {
+  const date = new Date(unixTimestamp * 1000)
+
+  return new Intl.DateTimeFormat('en-GB', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  }).format(date)
+}

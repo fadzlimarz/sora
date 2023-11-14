@@ -1,4 +1,4 @@
-# SoraSora - A Weather Web Application
+# SoraSora - A Weather Web Application <img src="public/2601.svg" alt="image" width="48" height="auto">
 
 In progress: A weather app built with Next.js and Mantine, utilizing Edge API Routes and integrating OpenWeatherMap and Google Maps APIs for real-time weather data.
 

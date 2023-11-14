@@ -1,14 +1,25 @@
 import classes from '@/components/Forecast.module.css'
 import Icon from '@/components/Icon'
 import {useWeatherContext} from '@/components/WeatherProvider'
-import {formatDay, formatTemperature, formatTime} from '@/lib/helpers'
+import {
+  formatDay,
+  formatTemperature,
+  formatTime,
+  formatUnixTimestamp
+} from '@/lib/helpers'
 import {Card, SimpleGrid, Space, Text, Title} from '@mantine/core'
 
 /**
  * Forecast component.
  */
 export default function Forecast() {
-  const {weather, tempUnit} = useWeatherContext()
+  const {
+    weather,
+    tempUnit,
+    weather: {
+      current: {dt}
+    }
+  } = useWeatherContext()
 
   return (
     <section>
@@ -61,6 +72,7 @@ export default function Forecast() {
           } = forecast
           return (
             <Card className={classes.card} shadow="sm" p="xl" key={index}>
+              <Text size="sm">{formatUnixTimestamp(dt)}</Text>
               <Text size="xl">{formatDay(dt, index)}</Text>
               <Text size="lg">
                 {main} {pop ? `${Math.round(pop * 100)}%` : ''}

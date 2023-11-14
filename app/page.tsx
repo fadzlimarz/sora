@@ -10,6 +10,8 @@ import Header from '@/components/Header'
 import Search from '@/components/Search'
 import {useWeatherContext} from '@/components/WeatherProvider'
 import {LoadingOverlay} from '@mantine/core'
+// import Image from 'next/image'
+// import map from '../public/map.svg'
 
 /**
  * Home page component.
@@ -19,6 +21,10 @@ export default function HomePage() {
 
   return (
     <>
+      {/* <div className={classes.wrapper}> */}
+      {/* <div className={classes.map}>
+          <Image alt="World Map" src={map} fill={true} quality={100} />
+        </div> */}
       <div className={classes.container}>
         <Header />
         <LoadingOverlay visible={isLoading} />
@@ -35,6 +41,7 @@ export default function HomePage() {
         <Footer />
         <BackToTop />
       </div>
+      {/* </div> */}
     </>
   )
 }
