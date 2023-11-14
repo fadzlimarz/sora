@@ -32,12 +32,14 @@ export default function Search() {
     !!locations && locations.length > 0
       ? locations
       : [
-          'Helsinki, FI',
-          'Tokyo, JP',
-          'London, GB',
-          'Vancouver, CA',
-          'New York, US',
-          'Bangkok, TH'
+          'Montreal, QC, Canada',
+          'Helsinki, Finland',
+          'Tokyo, Japan',
+          'Copenhagen, Denmark',
+          'London, UK',
+          'Vancouver, BC, Canada',
+          'New York, NY, USA',
+          'Bangkok, Thailand'
         ]
 
   return (

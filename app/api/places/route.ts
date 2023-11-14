@@ -13,7 +13,7 @@ export interface Place {
  * Predict the location via Google's Places Autocomplete API.
  *
  * @example
- * /api/places?location="helsinki, fi"
+ * /api/places?location="helsinki, finland"
  *
  * @author fadzlimarz
  * @see https://console.cloud.google.com/apis/credentials

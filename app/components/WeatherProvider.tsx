@@ -25,7 +25,7 @@ export function useWeatherContext() {
 export default function WeatherProvider({children}: ChildrenProps) {
   const [location, setLocation] = useLocalStorage({
     key: 'location',
-    defaultValue: 'Helsinki, FI',
+    defaultValue: 'Helsinki, Finland',
     getInitialValueInEffect: true
   })
 

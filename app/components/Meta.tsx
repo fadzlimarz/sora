@@ -11,13 +11,13 @@ export default function Meta() {
       <link
         as="fetch"
         rel="preload"
-        href="/api/places?location=Helsinki,%20FI"
+        href="/api/places?location=Helsinki,%20Finland"
         crossOrigin="anonymous"
       />
       <link
         as="fetch"
         rel="preload"
-        href="/api/weather?location=Helsinki,%20FI"
+        href="/api/weather?location=Helsinki,%20Finland"
         crossOrigin="anonymous"
       />
       <link rel="icon" href="/favicon.ico" />

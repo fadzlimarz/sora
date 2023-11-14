@@ -20,7 +20,7 @@ export interface GeocodeResponse {
  * Fetch weather data from the OpenWeatherMap API.
  *
  * @example
- * /api/weather?location="helsinki fi"
+ * /api/weather?location="helsinki finland"
  *
  * @author fadzlimarz
  * @see https://console.cloud.google.com/apis/credentials
