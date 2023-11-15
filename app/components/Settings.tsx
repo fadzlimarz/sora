@@ -1,6 +1,5 @@
 'use client'
 
-import classes from '@/components/Settings.module.css'
 import {useWeatherContext} from '@/components/WeatherProvider'
 import {
   ActionIcon,
@@ -34,12 +33,11 @@ export default function Settings() {
     <>
       <ActionIcon
         aria-label="open settings"
-        className={classes.settings}
         onClick={open}
         size="lg"
         variant="transparent"
       >
-        <IconSettings size={48} />
+        <IconSettings size={36} />
       </ActionIcon>
       <Modal
         closeButtonProps={{'aria-label': 'close settings'}}

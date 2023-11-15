@@ -7,7 +7,7 @@ import {
   formatTime,
   formatUnixTimestamp
 } from '@/lib/helpers'
-import {Card, SimpleGrid, Space, Text, Title} from '@mantine/core'
+import {Card, Group, SimpleGrid, Space, Text, Title} from '@mantine/core'
 
 /**
  * Forecast component.
@@ -77,14 +77,18 @@ export default function Forecast() {
               <Text size="xs" c="dimmed">
                 {formatUnixTimestamp(dt)}
               </Text>
-              <Text size="lg">{formatDay(dt, index)}</Text>
+              <Text size="md" fw={700}>
+                {formatDay(dt, index)}
+              </Text>
               <Text size="md">
                 {main} {pop ? `${Math.round(pop * 100)}%` : ''}
               </Text>
-              <Text size="md">
-                H {formatTemperature(tempUnit, max)} / L{' '}
-                {formatTemperature(tempUnit, min)}
-              </Text>
+              <Group justify="center">
+                <Text size="sm" c="dimmed">
+                  L {formatTemperature(tempUnit, min)}
+                </Text>
+                <Text size="sm">H {formatTemperature(tempUnit, max)}</Text>
+              </Group>
               <Icon icon={icon} />
               {day > max && (
                 <Text

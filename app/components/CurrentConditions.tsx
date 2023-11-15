@@ -29,8 +29,24 @@ export default function CurrentConditions() {
     const tempInCelsius = tempUnit === 'c' ? temp : (temp - 32) / 1.8
     const tempInFahrenheit = tempUnit === 'f' ? temp : temp * 1.8 + 32
 
+    // Check for thunderstorm
+    if (description.startsWith('thunderstorm')) {
+      advice = 'Thor might be nearby, thunderstorm alert!'
+      if (
+        (tempUnit === 'c' && tempInCelsius < 15) ||
+        (tempUnit === 'f' && tempInFahrenheit < 59)
+      ) {
+        advice += " Plus it's chilly, grab a cozy blanket."
+      } else if (
+        (tempUnit === 'c' && tempInCelsius > 20) ||
+        (tempUnit === 'f' && tempInFahrenheit > 68)
+      ) {
+        advice += ' Hot and stormy, an interesting combo.'
+      }
+    }
+
     // Check for rain or drizzle
-    if (description.startsWith('rain') || description.includes('drizzle')) {
+    else if (description.includes('rain') || description.includes('drizzle')) {
       advice = 'Bring an umbrella.'
       if (
         (tempUnit === 'c' && tempInCelsius < 10) ||
@@ -57,21 +73,6 @@ export default function CurrentConditions() {
         (tempUnit === 'f' && tempInFahrenheit > 32)
       ) {
         advice += ' Perfect for making snowmen.'
-      }
-    }
-    // Check for thunderstorm
-    else if (description.startsWith('thunderstorm')) {
-      advice = 'Thor might be nearby, thunderstorm alert!'
-      if (
-        (tempUnit === 'c' && tempInCelsius < 15) ||
-        (tempUnit === 'f' && tempInFahrenheit < 59)
-      ) {
-        advice += " Plus it's chilly, grab a cozy blanket."
-      } else if (
-        (tempUnit === 'c' && tempInCelsius > 20) ||
-        (tempUnit === 'f' && tempInFahrenheit > 68)
-      ) {
-        advice += ' Hot and stormy, an interesting combo.'
       }
     }
     // Check for fog or mist

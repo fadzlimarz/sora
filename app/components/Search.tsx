@@ -1,7 +1,7 @@
 'use client'
 
 import classes from '@/components/Search.module.css'
-import Settings from '@/components/Settings'
+// import Settings from '@/components/Settings'
 import {useWeatherContext} from '@/components/WeatherProvider'
 import {usePlaces} from '@/lib/hooks'
 import {Autocomplete} from '@mantine/core'
@@ -57,7 +57,7 @@ export default function Search() {
         value={searchTerm}
         onFocus={clearSearch(setSearchTerm)} // Use the clearSearch function
       />
-      <Settings />
+      {/* <Settings /> */}
     </>
   )
 }

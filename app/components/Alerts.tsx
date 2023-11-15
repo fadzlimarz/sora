@@ -46,9 +46,12 @@ export default function Alerts() {
           icon={<IconAlertTriangle />}
           key={index}
           mb="xl"
+          tt="capitalize"
           title={alert?.event}
         >
-          <Text mb="md">{alert?.description}</Text>
+          <Text mb="md" tt="none">
+            {alert?.description}
+          </Text>
         </Alert>
       ))}
     </section>
