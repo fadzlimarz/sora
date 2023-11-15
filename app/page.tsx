@@ -21,14 +21,14 @@ export default function HomePage() {
 
   return (
     <>
+      <div className={classes.map}>
+        <Image alt="World Map" src={map} fill={true} quality={100} />
+      </div>
       <div className={classes.container}>
         <Header />
         <LoadingOverlay visible={isLoading} />
         {!isLoading && (
           <main className={classes.main}>
-            <div className={classes.map}>
-              <Image alt="World Map" src={map} fill={true} quality={100} />
-            </div>
             <div className={classes.search}>
               <Search />
             </div>
