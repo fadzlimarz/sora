@@ -27,7 +27,7 @@ export default function Forecast() {
       <Title className={classes.title} order={2} my="lg">
         The Next 4 Hours
       </Title>
-      <SimpleGrid cols={{base: 1, sm: 2}}>
+      <SimpleGrid cols={{base: 2, sm: 4}}>
         {weather?.hourly
           ?.map((forecast, index: number) => {
             const {
@@ -37,15 +37,17 @@ export default function Forecast() {
               feels_like
             } = forecast
             return (
-              <Card className={classes.card} shadow="sm" p="xl" key={index}>
-                <Text size="xl">{formatTime(dt)}</Text>
-                <Text size="xl">{formatTemperature(tempUnit, temp)}</Text>
+              <Card className={classes.card} shadow="sm" p="md" key={index}>
+                <Text size="md" c="dimmed">
+                  {formatTime(dt)}
+                </Text>
+                <Text size="lg">{formatTemperature(tempUnit, temp)}</Text>
                 <Icon icon={icon} />
-                <Text size="lg">{main}</Text>
+                <Text size="md">{main}</Text>
                 {feels_like > temp && (
                   <Text
                     gradient={{from: 'yellow', to: 'orange', deg: 45}}
-                    size="lg"
+                    size="md"
                     variant="gradient"
                   >
                     Feels Like: {formatTemperature(tempUnit, feels_like)}
@@ -61,7 +63,7 @@ export default function Forecast() {
         Extended Forecast
       </Title>
 
-      <SimpleGrid cols={{base: 1, sm: 2}}>
+      <SimpleGrid cols={{base: 2, sm: 4}}>
         {weather?.daily?.map((forecast, index: number) => {
           const {
             dt,
@@ -72,12 +74,14 @@ export default function Forecast() {
           } = forecast
           return (
             <Card className={classes.card} shadow="sm" p="xl" key={index}>
-              <Text size="sm">{formatUnixTimestamp(dt)}</Text>
-              <Text size="xl">{formatDay(dt, index)}</Text>
-              <Text size="lg">
+              <Text size="xs" c="dimmed">
+                {formatUnixTimestamp(dt)}
+              </Text>
+              <Text size="lg">{formatDay(dt, index)}</Text>
+              <Text size="md">
                 {main} {pop ? `${Math.round(pop * 100)}%` : ''}
               </Text>
-              <Text size="lg">
+              <Text size="md">
                 H {formatTemperature(tempUnit, max)} / L{' '}
                 {formatTemperature(tempUnit, min)}
               </Text>
@@ -85,7 +89,7 @@ export default function Forecast() {
               {day > max && (
                 <Text
                   gradient={{from: 'yellow', to: 'orange', deg: 45}}
-                  size="lg"
+                  size="md"
                   variant="gradient"
                 >
                   Feels Like: {formatTemperature(tempUnit, day)}

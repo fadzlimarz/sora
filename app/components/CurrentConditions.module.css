@@ -22,3 +22,11 @@
   margin: 0;
   text-align: center;
 }
+
+.advice {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+  font-style: italic;
+}

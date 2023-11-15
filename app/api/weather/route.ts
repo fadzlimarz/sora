@@ -1,4 +1,5 @@
 import {WeatherResponse} from '@/lib/types'
+import {geolocation} from '@vercel/edge'
 
 export const runtime = 'edge'
 
@@ -16,123 +17,61 @@ export interface GeocodeResponse {
   ]
 }
 
-/**
- * Fetch weather data from the OpenWeatherMap API.
- *
- * @example
- * /api/weather?location="helsinki finland"
- *
- * @author fadzlimarz
- * @see https://console.cloud.google.com/apis/credentials
- * @see https://developers.google.com/maps/documentation/geocoding/overview
- * @see https://openweathermap.org/api/one-call-api
- * @see https://nextjs.org/docs/app/building-your-application/routing/route-handlers
- * @see https://nextjs.org/docs/pages/api-reference/edge
- */
 export async function GET(request: Request) {
-  // Get query params from request.
-  const {searchParams} = new URL(request.url)
+  // Get the client's geolocation
+  const {latitude, longitude} = geolocation(request)
 
-  // Parse params.
-  const unsanitizedLocation = searchParams.get('location') || ''
+  const {searchParams} = new URL(request.url)
+  let unsanitizedLocation = searchParams.get('location') || ''
 
   // Sanitize the location.
   const location = encodeURI(unsanitizedLocation)
 
-  // No location? Bail...
-  if (!location) {
-    return new Response(JSON.stringify({error: 'No location provided.'}), {
-      status: 400,
-      statusText: 'Bad Request'
-    })
+  // Use geolocation as a fallback if no location is provided
+  let lat = latitude ? parseFloat(latitude) : 60.1695 // Default to Helsinki
+  let lon = longitude ? parseFloat(longitude) : 24.9355 // Default to Helsinki
+
+  // If a location is provided, try to geocode it
+  if (unsanitizedLocation) {
+    try {
+      const geocode = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.GOOGLE_MAPS_API_KEY}`
+      )
+
+      if (geocode.status !== 200) {
+        throw new Error(`${geocode.statusText}`)
+      }
+
+      const coordinates = (await geocode.json()) as GeocodeResponse
+
+      if (coordinates.status != 'OK' || !coordinates.results.length) {
+        throw new Error(`${coordinates.status}`)
+      }
+
+      lat = coordinates.results[0].geometry.location.lat
+      lon = coordinates.results[0].geometry.location.lng
+    } catch (error) {
+      console.error(error)
+      // If geocoding fails, use the default lat, lon from geolocation
+    }
   }
 
-  // Set default coordinates as fallback.
-  let lat = 60.1695
-  let lon = 24.9355
-
+  // Fetch weather data
   try {
-    // First, try to geocode the address.
-    const geocode = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${process.env.GOOGLE_MAPS_API_KEY}`
-    )
-
-    // Issue with the geocode request? Bail...
-    if (geocode.status !== 200) {
-      return new Response(
-        JSON.stringify({
-          error: `${geocode.statusText}`
-        }),
-        {
-          status: geocode.status,
-          statusText: geocode.statusText
-        }
-      )
-    }
-
-    // Parse the response.
-    const coordinates = (await geocode.json()) as GeocodeResponse
-
-    // Issue with the response? Bail...
-    if (coordinates.status != 'OK' || !coordinates.results.length) {
-      return new Response(
-        JSON.stringify({
-          error: `${coordinates.status}`
-        }),
-        {
-          status: 400,
-          statusText: 'Bad Request'
-        }
-      )
-    }
-
-    // Pluck out and set the coordinates.
-    lat = coordinates?.results[0]?.geometry?.location?.lat
-    lon = coordinates?.results[0]?.geometry?.location?.lng
-  } catch (error) {
-    console.error(error)
-    return new Response(JSON.stringify({error: `${error}`}), {
-      status: 500,
-      statusText: 'Internal Server Error'
-    })
-  }
-
-  try {
-    // Now, fetch the weather data.
     const weather = await fetch(
       `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${process.env.OPENWEATHER_API_KEY}`
     )
 
-    // Issue with the weather response? Bail...
     if (weather.status != 200) {
-      return new Response(
-        JSON.stringify({
-          error: `${weather.statusText}`
-        }),
-        {
-          status: weather.status,
-          statusText: weather.statusText
-        }
-      )
+      throw new Error(`${weather.statusText}`)
     }
 
-    // Parse the response.
     const forecast = (await weather.json()) as WeatherResponse
 
-    // Issue with the forecast? Bail...
     if (!forecast.lat || !forecast.lon) {
-      return new Response(
-        JSON.stringify({
-          error: 'No forecast data.'
-        }),
-        {
-          status: 400,
-          statusText: 'Bad Request'
-        }
-      )
+      throw new Error('No forecast data.')
     }
 
-    // Return the weather data.
     return new Response(JSON.stringify(forecast), {
       headers: {
         'Content-Type': 'application/json',
