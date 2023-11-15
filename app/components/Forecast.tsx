@@ -84,10 +84,10 @@ export default function Forecast() {
                 {main} {pop ? `${Math.round(pop * 100)}%` : ''}
               </Text>
               <Group justify="center">
+                <Text size="sm">H {formatTemperature(tempUnit, max)}</Text>
                 <Text size="sm" c="dimmed">
                   L {formatTemperature(tempUnit, min)}
                 </Text>
-                <Text size="sm">H {formatTemperature(tempUnit, max)}</Text>
               </Group>
               <Icon icon={icon} />
               {day > max && (

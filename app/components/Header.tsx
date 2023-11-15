@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <>
       <header className={classes.header}>
-        <Title className={classes.title} order={1}>
+        <Title>
           Sora <Image src="/2601.svg" height={32} width={32} alt="cloud" /> Sora
         </Title>
         <Settings />
