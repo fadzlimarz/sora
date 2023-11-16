@@ -1,6 +1,5 @@
 import classes from '@/Page.module.css'
 import Meta from '@/components/Meta'
-import {ThemeProviders} from '@/components/ThemeProvider'
 import WeatherProvider from '@/components/WeatherProvider'
 import config from '@/lib/config'
 import {ColorSchemeScript, MantineProvider} from '@mantine/core'
@@ -25,14 +24,14 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <Meta />
       </head>
       <body>
-        <ThemeProviders>
+        <>
           <div className={classes.map}>
             <Image alt="World Map" src={map} fill quality={100} />
           </div>
           <MantineProvider theme={theme} defaultColorScheme="auto">
             <WeatherProvider>{children}</WeatherProvider>
           </MantineProvider>
-        </ThemeProviders>
+        </>
       </body>
     </html>
   )

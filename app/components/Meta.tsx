@@ -59,6 +59,8 @@ export default function Meta() {
       <meta name="twitter:title" content={config.title} />
       <meta name="twitter:image" content={config.socialBanner} />
       <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+      <link rel="icon" type="image/png" href="/images/favicon.png" />
       {/* Preloading API calls can be kept or removed depending on use case */}
       <link
         as="fetch"

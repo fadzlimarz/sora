@@ -22,7 +22,7 @@ export default function HomePage() {
       <LoadingOverlay
         visible={isLoading}
         zIndex={1000}
-        overlayProps={{radius: 'sm', blur: 2}}
+        overlayProps={{radius: 'sm', blur: 1}}
       />
       <div className={classes.container}>
         <Header />

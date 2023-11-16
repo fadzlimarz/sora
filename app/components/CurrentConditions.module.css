@@ -10,7 +10,7 @@
 .bigtemp {
   font-size: 8rem;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.1;
   margin: 0;
   text-align: center;
 }
@@ -18,7 +18,7 @@
 .feelslike {
   font-size: 2rem;
   font-weight: 700;
-  line-height: 1;
+  line-height: 1.1;
   margin: 0;
   text-align: center;
 }

@@ -9,7 +9,7 @@ import {
   Switch,
   useMantineColorScheme
 } from '@mantine/core'
-import {useDisclosure, useHotkeys} from '@mantine/hooks'
+import {useDisclosure} from '@mantine/hooks'
 import {IconSettings} from '@tabler/icons-react'
 import {useState} from 'react'
 
@@ -26,8 +26,6 @@ export default function Settings() {
     setChecked(!checked)
     setTempUnit(checked ? 'c' : 'f')
   }
-
-  useHotkeys([['mod+u', () => toggleTempUnit()]])
 
   return (
     <>
@@ -49,7 +47,7 @@ export default function Settings() {
         <Stack justify="space-between">
           <Switch
             aria-label="Toggle between light and theme."
-            label="Dark Theme (⌘+J)"
+            label="Dark Theme"
             checked={colorScheme === 'dark'}
             offLabel="OFF"
             onChange={() => toggleColorScheme()}
@@ -58,7 +56,7 @@ export default function Settings() {
           />
           <Switch
             aria-label="Toggle between Fahrenheit and Celsius"
-            label="Fahrenheit (⌘+U)"
+            label="Fahrenheit"
             checked={checked}
             offLabel="OFF"
             onChange={() => toggleTempUnit()}

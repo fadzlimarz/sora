@@ -131,7 +131,7 @@ export default function CurrentConditions() {
           {formatUnixTimestamp(dt)}
           <Text
             component="p"
-            gradient={{from: 'purple', to: 'violet', deg: 45}}
+            gradient={{from: 'grape', to: 'violet', deg: 45}}
             variant="gradient"
             size="lg"
             ta="center"
@@ -143,7 +143,7 @@ export default function CurrentConditions() {
         <Text
           className={classes.description}
           component="p"
-          gradient={{from: 'indigo', to: 'blue', deg: 35}}
+          gradient={{from: 'indigo', to: 'blue', deg: 45}}
           variant="gradient"
         >
           {description}
@@ -151,7 +151,7 @@ export default function CurrentConditions() {
         <Text
           className={classes.bigtemp}
           component="p"
-          gradient={{from: 'indigo', to: 'blue', deg: 35}}
+          gradient={{from: 'indigo', to: 'blue', deg: 45}}
           variant="gradient"
         >
           {formatTemperature(tempUnit, temp)}
@@ -160,7 +160,7 @@ export default function CurrentConditions() {
           <Text
             className={classes.feelslike}
             component="p"
-            gradient={{from: 'yellow', to: 'orange', deg: 35}}
+            gradient={{from: 'yellow', to: 'orange', deg: 45}}
             variant="gradient"
           >
             Feels Like: {formatTemperature(tempUnit, feels_like)}
