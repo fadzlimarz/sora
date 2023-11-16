@@ -34,7 +34,7 @@ export default function Settings() {
       <ActionIcon
         aria-label="open settings"
         onClick={open}
-        size="lg"
+        size="md"
         variant="transparent"
       >
         <IconSettings size={36} />
@@ -54,7 +54,7 @@ export default function Settings() {
             offLabel="OFF"
             onChange={() => toggleColorScheme()}
             onLabel="ON"
-            size="lg"
+            size="md"
           />
           <Switch
             aria-label="Toggle between Fahrenheit and Celsius"
@@ -63,7 +63,7 @@ export default function Settings() {
             offLabel="OFF"
             onChange={() => toggleTempUnit()}
             onLabel="ON"
-            size="lg"
+            size="md"
           />
           <Flex
             gap="md"

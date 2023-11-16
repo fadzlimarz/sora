@@ -25,7 +25,7 @@ export default function CurrentConditions() {
   // Regular function to determine the advice based on weather and temperature
   function getWeatherAdvice() {
     let advice = 'Have a nice day!'
-    const formattedTemp = formatTemperature(tempUnit, temp)
+    // const formattedTemp = formatTemperature(tempUnit, temp)
     const tempInCelsius = tempUnit === 'c' ? temp : (temp - 32) / 1.8
     const tempInFahrenheit = tempUnit === 'f' ? temp : temp * 1.8 + 32
 
@@ -44,7 +44,6 @@ export default function CurrentConditions() {
         advice += ' Hot and stormy, an interesting combo.'
       }
     }
-
     // Check for rain or drizzle
     else if (description.includes('rain') || description.includes('drizzle')) {
       advice = 'Bring an umbrella.'
@@ -136,6 +135,7 @@ export default function CurrentConditions() {
             variant="gradient"
             size="lg"
             ta="center"
+            fw={700}
           >
             {location}
           </Text>
@@ -143,7 +143,7 @@ export default function CurrentConditions() {
         <Text
           className={classes.description}
           component="p"
-          gradient={{from: 'indigo', to: 'cyan', deg: 45}}
+          gradient={{from: 'indigo', to: 'blue', deg: 35}}
           variant="gradient"
         >
           {description}
@@ -151,7 +151,7 @@ export default function CurrentConditions() {
         <Text
           className={classes.bigtemp}
           component="p"
-          gradient={{from: 'indigo', to: 'cyan', deg: 45}}
+          gradient={{from: 'indigo', to: 'blue', deg: 35}}
           variant="gradient"
         >
           {formatTemperature(tempUnit, temp)}
@@ -160,7 +160,7 @@ export default function CurrentConditions() {
           <Text
             className={classes.feelslike}
             component="p"
-            gradient={{from: 'yellow', to: 'orange', deg: 45}}
+            gradient={{from: 'yellow', to: 'orange', deg: 35}}
             variant="gradient"
           >
             Feels Like: {formatTemperature(tempUnit, feels_like)}

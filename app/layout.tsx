@@ -1,5 +1,6 @@
 import classes from '@/Page.module.css'
 import Meta from '@/components/Meta'
+import {ThemeProviders} from '@/components/ThemeProvider'
 import WeatherProvider from '@/components/WeatherProvider'
 import config from '@/lib/config'
 import {ColorSchemeScript, MantineProvider} from '@mantine/core'
@@ -18,18 +19,20 @@ export const metadata = {
  */
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <ColorSchemeScript />
         <Meta />
       </head>
       <body>
-        <div className={classes.map}>
-          <Image alt="World Map" src={map} fill quality={100} />
-        </div>
-        <MantineProvider theme={theme} defaultColorScheme="auto">
-          <WeatherProvider>{children}</WeatherProvider>
-        </MantineProvider>
+        <ThemeProviders>
+          <div className={classes.map}>
+            <Image alt="World Map" src={map} fill quality={100} />
+          </div>
+          <MantineProvider theme={theme} defaultColorScheme="auto">
+            <WeatherProvider>{children}</WeatherProvider>
+          </MantineProvider>
+        </ThemeProviders>
       </body>
     </html>
   )

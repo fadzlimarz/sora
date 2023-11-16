@@ -10,14 +10,14 @@ In progress: A weather app built with Next.js and Mantine, utilizing Edge API Ro
 
 ## TODO
 
-### Column Name
+### Progress
 
-- [ ] Task title ~3d #type @name yyyy-mm-dd
-  - [ ] Sub-task or description
+- [ ] Add testing
+  - [ ] Dockerize
 
-### Completed Column ✓
+### Completed? ✓
 
-- [x] Completed task title
+- [x] none
 
 ---
 
